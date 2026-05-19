@@ -223,15 +223,17 @@ app.post('/api/logros', async (req, res) => {
     res.json({ ok: true });
 });
 
-// ===== RUTAS DE ESTADO DE USUARIO =====
 app.post('/api/estado-todo', async (req, res) => {
     const { usuario, estado } = req.body;
     if (!usuario) return res.json({ ok: false, error: 'Usuario requerido' });
     
-    await Estado.deleteMany({ usuario });
+    // Usar updateOne con upsert para evitar duplicados
     for (const [juegoId, estadoJuego] of Object.entries(estado)) {
-        const nuevoEstado = new Estado({ usuario, juegoId: parseInt(juegoId), estado: estadoJuego });
-        await nuevoEstado.save();
+        await Estado.updateOne(
+            { usuario, juegoId: parseInt(juegoId) },
+            { $set: { estado: estadoJuego } },
+            { upsert: true }
+        );
     }
     console.log(`💾 Estado completo guardado para ${usuario}`);
     res.json({ ok: true });
@@ -249,8 +251,8 @@ app.post('/api/estado', async (req, res) => {
     if (!usuario || juegoId === undefined) return res.json({ ok: false, error: 'Datos incompletos' });
     
     await Estado.updateOne(
-        { usuario, juegoId },
-        { estado: estadoJuego },
+        { usuario, juegoId: parseInt(juegoId) },
+        { $set: { estado: estadoJuego } },
         { upsert: true }
     );
     console.log(`💾 Estado guardado para ${usuario}: juego ${juegoId}`);
