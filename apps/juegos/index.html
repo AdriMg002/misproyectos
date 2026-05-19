@@ -92,7 +92,7 @@
             <a href="#" class="sidebar-link" onclick="cambiarPestanaClasica('tienda')">
                 <span class="sidebar-icono">🛒</span><span>Tienda</span>
             </a>
-            <a href="#" class="sidebar-link" id="linkAgregar" onclick="cambiarPestanaClasica('agregar')">
+            <a href="#" class="sidebar-link" id="linkAgregar" style="display:none;" onclick="cambiarPestanaClasica('agregar')">
                 <span class="sidebar-icono">➕</span><span>Agregar Juego</span>
             </a>
             <a href="#" class="sidebar-link" id="linkAdmin" style="display:none;" onclick="cambiarPestanaClasica('admin')">
@@ -169,13 +169,11 @@
     <script>
         document.getElementById('sidebarNombreUsuario').textContent = localStorage.getItem('usuarioActual');
         
-        // Mostrar siempre Agregar Juego
-        document.getElementById('linkAgregar').style.display = 'flex';
-
         // Admin y Emuladores solo para admin
         if (localStorage.getItem('esAdmin') === 'true') {
             document.getElementById('linkAdmin').style.display = 'flex';
             document.getElementById('linkEmuladores').style.display = 'flex';
+            document.getElementById('linkAgregar').style.display = 'flex'; 
         }
 
         function cerrarSesion() { 
