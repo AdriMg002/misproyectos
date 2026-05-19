@@ -727,9 +727,12 @@ else if (campo === 'loTengo' && (op.valor === 'fisico' || op.valor === 'digital'
     
     await guardarEstadoServidor();
     
-    // Cambiar a biblioteca
-    cambiarPestanaClasica('biblioteca');  // ← Usa esta función en lugar de solo cambiar el filtro
+    // Recargar estado desde el servidor para asegurar
+    const res = await fetch(`/api/estado/${usuarioActual}`, { cache: 'no-store' });
+    const estadoActualizado = await res.json();
+    Object.assign(estadoUsuario, estadoActualizado);
     
+    cambiarPestanaClasica('biblioteca');
     menu.remove();
     btn.classList.remove('mini-menu-activo');
 }

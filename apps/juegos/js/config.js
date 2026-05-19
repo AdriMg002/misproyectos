@@ -29,7 +29,8 @@ async function guardarEstadoServidor() {
         await fetch('/api/estado-todo', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario })
+            body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario }),
+            cache: 'no-store'  // ← Añade esta línea
         });
     } catch (error) {
         console.warn('⚠️ No se pudo guardar estado:', error.message);
