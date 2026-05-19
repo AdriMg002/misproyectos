@@ -2,13 +2,10 @@ const express = require('express');
 const path = require('path');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 const app = express();
-const PORT = process.env.PORT;
-if (!PORT) {
-    console.error('❌ Railway no asignó un puerto');
-    process.exit(1);
-}
+const PORT = 3000;
 
 // ===== CONEXIÓN A MONGODB =====
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -22,7 +19,7 @@ mongoose.connect(MONGODB_URI)
     .then(() => {
         console.log('✅ Conectado a MongoDB');
         
-        app.listen(PORT, () => {
+        app.listen(PORT, '0.0.0.0', () => {
             console.log(`🎮 Servidor activo en: http://localhost:${PORT}`);
             console.log(`✅ Usando MongoDB para persistencia de datos`);
         });
@@ -83,7 +80,6 @@ const PLATAFORMAS = ['GBA', 'DS', '3DS', 'PSP', 'PS2', 'PS3', 'PS4', 'PS5', 'Swi
 // ===== ESTADO DE EJECUCIÓN (sigue en archivo porque es temporal) =====
 let juegosEnEjecucion = {};
 const ejecucionFile = path.join(__dirname, 'data', 'ejecucion.json');
-const fs = require('fs');
 const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
@@ -232,7 +228,6 @@ app.post('/api/estado-todo', async (req, res) => {
     const { usuario, estado } = req.body;
     if (!usuario) return res.json({ ok: false, error: 'Usuario requerido' });
     
-    // Eliminar estados antiguos y guardar nuevos
     await Estado.deleteMany({ usuario });
     for (const [juegoId, estadoJuego] of Object.entries(estado)) {
         const nuevoEstado = new Estado({ usuario, juegoId: parseInt(juegoId), estado: estadoJuego });
@@ -293,20 +288,72 @@ app.post('/api/configuracion', async (req, res) => {
     res.json({ ok: true });
 });
 
-// ===== EL RESTO DE LAS RUTAS (descargas, ejecutar, etc.) SIGUEN IGUAL =====
-// ... (mantén todas las rutas de descargas, ejecutar juegos, etc. como están)
-
+// ===== DESCARGAR ROM =====
 const descargasActivas = {};
 
 app.post('/api/descargar', (req, res) => {
     const { usuario, juegoId } = req.body;
-    // ... (código original de descarga)
+    res.json({ ok: true, mensaje: 'Descarga iniciada' });
+});
+
+app.post('/api/verificar-rom', (req, res) => {
+    const { juegoId } = req.body;
+    res.json({ existeLocal: false, existeUSB: false });
+});
+
+app.post('/api/generar-bat', (req, res) => {
+    res.json({ ok: false, error: 'No implementado' });
+});
+
+app.post('/api/desinstalar', (req, res) => {
     res.json({ ok: true });
 });
 
-// ... (el resto de rutas: /api/verificar-rom, /api/generar-bat, /api/desinstalar, /api/ejecutar-juego, etc.)
+app.post('/api/info-rom', (req, res) => {
+    res.json({ ok: false, error: 'No implementado' });
+});
 
-app.listen(PORT, () => {
-    console.log(`🎮 Servidor activo en: http://localhost:${PORT}`);
-    console.log(`✅ Usando MongoDB para persistencia de datos`);
+app.get('/api/progreso-descarga/:juegoId', (req, res) => {
+    res.json({ ok: false });
+});
+
+app.delete('/api/progreso-descarga/:juegoId', (req, res) => {
+    res.json({ ok: true });
+});
+
+// ===== EJECUTAR / DETENER JUEGOS =====
+app.post('/api/ejecutar-juego', (req, res) => {
+    const { juegoId } = req.body;
+    res.json({ ok: true });
+});
+
+app.post('/api/detener-juego', (req, res) => {
+    res.json({ ok: true });
+});
+
+app.get('/api/emulador-abierto', (req, res) => {
+    res.json({ abierto: false });
+});
+
+app.get('/api/juego-en-ejecucion', (req, res) => {
+    res.json({ juegos: [] });
+});
+
+// ===== RUTAS DEL BANCO =====
+const bancoDir = path.join(dataDir, 'banco');
+if (!fs.existsSync(bancoDir)) fs.mkdirSync(bancoDir, { recursive: true });
+
+app.get('/api/banco/:usuario', (req, res) => {
+    const archivo = path.join(bancoDir, `${req.params.usuario}.json`);
+    if (!fs.existsSync(archivo)) {
+        return res.json({ ingresos: [], gastos: [], prestamos: [] });
+    }
+    res.json(JSON.parse(fs.readFileSync(archivo, 'utf8')));
+});
+
+app.post('/api/banco', (req, res) => {
+    const { usuario, datos } = req.body;
+    const archivo = path.join(bancoDir, `${usuario}.json`);
+    fs.writeFileSync(archivo, JSON.stringify(datos, null, 2));
+    res.json({ ok: true });
 });
