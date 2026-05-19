@@ -171,12 +171,10 @@ function editarJuego(id) {
 // ===== INTERFAZ DE USUARIO =====
 
 function crearBannerPlataforma(plataformaJuego, colorTexto, juegoId, opcionesPosesion) {
-    const opsJSON = JSON.stringify(opcionesPosesion || []).replace(/"/g, '&quot;');
-    
     return `
         <span class="bannerPlataformaText tag-clickeable" 
               style="color:${colorTexto || '#fff'};cursor:pointer;font-weight:bold;font-size:11px;text-transform:uppercase;"
-              onclick="event.stopPropagation();toggleMiniMenu(event, ${juegoId}, ${opsJSON}, 'tipoPosesion')">
+              onclick="event.stopPropagation();toggleMiniMenu(event, ${juegoId}, ${JSON.stringify(opcionesPosesion).replace(/"/g, '&quot;')}, 'loTengo')">
             ${plataformaJuego}
         </span>`;
 }
@@ -620,18 +618,28 @@ async function cambiarEstadoJuego(juegoId, campo, valor) {
         estadoUsuario[juegoId] = {};
     }
     
-    estadoUsuario[juegoId][campo] = valor;
-    
-    if (campo === 'loTengo' && valor === true) {
-        delete estadoUsuario[juegoId].precio;
-    }
-    if (campo === 'loTengo' && valor === false) {
+    // Convertir valores correctamente
+    if (campo === 'loTengo') {
+        // Si viene como string 'no' o booleano false, convertirlo a false
+        estadoUsuario[juegoId][campo] = (valor === true || valor === 'true' || valor === 'fisico' || valor === 'digital');
+    } else if (campo === 'tipoPosesion' && valor === 'no') {
+        estadoUsuario[juegoId].loTengo = false;
         estadoUsuario[juegoId].tipoPosesion = null;
+        await guardarEstadoServidor();
+        window.dispatchEvent(new Event('actualizarContadores'));
+        mostrarJuegos();
+        return;
+    } else {
+        estadoUsuario[juegoId][campo] = valor;
+    }
+    
+    if (campo === 'loTengo' && estadoUsuario[juegoId][campo] === true) {
+        delete estadoUsuario[juegoId].precio;
     }
     
     await guardarEstadoServidor();
     window.dispatchEvent(new Event('actualizarContadores'));
-    actualizarTarjetaJuego(juegoId);
+    mostrarJuegos();
 }
 
 async function cambiarPrecioJuego(juegoId) {
@@ -697,27 +705,46 @@ function toggleMiniMenu(e, juegoId, opciones, campo) {
         min-width: 130px;
     `;
 
-    opciones.forEach(op => {
-        const item = document.createElement('div');
-        item.className = 'mini-menu-item';
-        item.textContent = op.texto;
-        item.style.cssText = `padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #ccc; transition: background 0.2s; white-space: nowrap;`;
-        item.addEventListener('mouseenter', () => item.style.background = '#0f3460');
-        item.addEventListener('mouseleave', () => item.style.background = 'transparent');
-        item.addEventListener('click', (ev) => {
-            ev.stopPropagation();
-            if (op.valor === 'precio') { menu.remove(); btn.classList.remove('mini-menu-activo'); cambiarPrecioJuego(juegoId); }
-            else if (campo === 'tipoPosesion' && op.valor === 'no') { cambiarEstadoJuego(juegoId, 'loTengo', false); menu.remove(); btn.classList.remove('mini-menu-activo'); }
-            else if (campo === 'loTengo' && (op.valor === 'fisico' || op.valor === 'digital')) {
-                cambiarEstadoJuego(juegoId, 'loTengo', true);
-                cambiarEstadoJuego(juegoId, 'tipoPosesion', op.valor);
-                menu.remove();
-                btn.classList.remove('mini-menu-activo');
-            }
-            else { cambiarEstadoJuego(juegoId, campo, op.valor); menu.remove(); btn.classList.remove('mini-menu-activo'); }
-        });
-        menu.appendChild(item);
+opciones.forEach(op => {
+    const item = document.createElement('div');
+    item.className = 'mini-menu-item';
+    item.textContent = op.texto;
+    item.style.cssText = `padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #ccc; transition: background 0.2s; white-space: nowrap;`;
+    item.addEventListener('mouseenter', () => item.style.background = '#0f3460');
+    item.addEventListener('mouseleave', () => item.style.background = 'transparent');
+    item.addEventListener('click', async (ev) => {  // ← Añade async aquí
+        ev.stopPropagation();
+        if (op.valor === 'precio') { menu.remove(); btn.classList.remove('mini-menu-activo'); cambiarPrecioJuego(juegoId); }
+else if (campo === 'tipoPosesion' && op.valor === 'no') {
+    cambiarEstadoJuego(juegoId, 'tipoPosesion', 'no');
+    menu.remove();
+    btn.classList.remove('mini-menu-activo');
+}
+else if (campo === 'loTengo' && (op.valor === 'fisico' || op.valor === 'digital')) {
+    if (!estadoUsuario[juegoId]) estadoUsuario[juegoId] = {};
+    estadoUsuario[juegoId].loTengo = true;
+    estadoUsuario[juegoId].tipoPosesion = op.valor;
+    
+    await fetch('/api/estado-todo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario })
     });
+    
+    document.getElementById('filtroEstado').value = 'si';
+    mostrarJuegos();
+    menu.remove();
+    btn.classList.remove('mini-menu-activo');
+}
+        else { 
+            await cambiarEstadoJuego(juegoId, campo, op.valor); 
+            menu.remove(); 
+            btn.classList.remove('mini-menu-activo');
+            mostrarJuegos();  // ← Recargar la vista también para progreso
+        }
+    });
+    menu.appendChild(item);
+});
 
     document.body.appendChild(menu);
 
