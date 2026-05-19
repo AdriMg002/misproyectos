@@ -394,7 +394,7 @@ function mostrarJuegos() {
             }
         }, 0);
         
-        cargarEstadoBotones(juego.id);
+        // cargarEstadoBotones(juego.id);
     });
 
     // Asegurar que el scroll llegue hasta el final
@@ -618,16 +618,14 @@ async function cambiarEstadoJuego(juegoId, campo, valor) {
         estadoUsuario[juegoId] = {};
     }
     
-    // Convertir valores correctamente
     if (campo === 'loTengo') {
-        // Si viene como string 'no' o booleano false, convertirlo a false
         estadoUsuario[juegoId][campo] = (valor === true || valor === 'true' || valor === 'fisico' || valor === 'digital');
     } else if (campo === 'tipoPosesion' && valor === 'no') {
         estadoUsuario[juegoId].loTengo = false;
         estadoUsuario[juegoId].tipoPosesion = null;
         await guardarEstadoServidor();
         window.dispatchEvent(new Event('actualizarContadores'));
-        mostrarJuegos();
+        actualizarTarjetaJuego(juegoId);  // ← En lugar de mostrarJuegos()
         return;
     } else {
         estadoUsuario[juegoId][campo] = valor;
@@ -639,7 +637,7 @@ async function cambiarEstadoJuego(juegoId, campo, valor) {
     
     await guardarEstadoServidor();
     window.dispatchEvent(new Event('actualizarContadores'));
-    mostrarJuegos();
+    actualizarTarjetaJuego(juegoId);  // ← En lugar de mostrarJuegos()
 }
 
 async function cambiarPrecioJuego(juegoId) {
@@ -725,14 +723,13 @@ else if (campo === 'loTengo' && (op.valor === 'fisico' || op.valor === 'digital'
     estadoUsuario[juegoId].loTengo = true;
     estadoUsuario[juegoId].tipoPosesion = op.valor;
     
-    await guardarEstadoServidor();
+    // Cambio visual inmediato
+    actualizarTarjetaJuego(juegoId);
     
-    // Recargar estado desde el servidor para asegurar
-    const res = await fetch(`/api/estado/${usuarioActual}`, { cache: 'no-store' });
-    const estadoActualizado = await res.json();
-    Object.assign(estadoUsuario, estadoActualizado);
+    // Guardar en segundo plano
+    guardarEstadoServidor();
     
-    cambiarPestanaClasica('biblioteca');
+    document.getElementById('filtroEstado').value = 'si';
     menu.remove();
     btn.classList.remove('mini-menu-activo');
 }
@@ -1537,6 +1534,6 @@ setInterval(async () => {
             if (!verificando) procesarCola();
         }
     } catch(e) {}
-}, 3000);
+}, 30000);
 
 cargarDatosIniciales();

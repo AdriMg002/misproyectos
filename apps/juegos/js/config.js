@@ -25,16 +25,13 @@ function obtenerNombreArchivo(nombreJuego) {
 // ===== LLAMADAS A LA API =====
 
 async function guardarEstadoServidor() {
-    try {
-        await fetch('/api/estado-todo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario }),
-            cache: 'no-store'  // ← Añade esta línea
-        });
-    } catch (error) {
-        console.warn('⚠️ No se pudo guardar estado:', error.message);
-    }
+    // No esperar la respuesta, fuego y olvido
+    fetch('/api/estado-todo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario }),
+        cache: 'no-store'
+    }).catch(e => console.warn('Error guardando estado:', e));
 }
 
 async function guardarLogrosServidor(juegoId) {
