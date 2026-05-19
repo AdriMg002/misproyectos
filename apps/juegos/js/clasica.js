@@ -725,14 +725,11 @@ else if (campo === 'loTengo' && (op.valor === 'fisico' || op.valor === 'digital'
     estadoUsuario[juegoId].loTengo = true;
     estadoUsuario[juegoId].tipoPosesion = op.valor;
     
-    await fetch('/api/estado-todo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ usuario: usuarioActual, estado: estadoUsuario })
-    });
+    await guardarEstadoServidor();
     
-    document.getElementById('filtroEstado').value = 'si';
-    mostrarJuegos();
+    // Cambiar a biblioteca
+    cambiarPestanaClasica('biblioteca');  // ← Usa esta función en lugar de solo cambiar el filtro
+    
     menu.remove();
     btn.classList.remove('mini-menu-activo');
 }
@@ -796,11 +793,11 @@ function cambiarPestanaClasica(pestana) {
         p.style.display = 'none';
     });
     
-    if (pestana === 'biblioteca' || pestana === 'tienda') {
-        grid.style.display = 'grid';
-        document.getElementById('topbar').classList.remove('oculto');
-        document.getElementById('filtroEstado').value = pestana === 'biblioteca' ? 'si' : 'no';
-        mostrarJuegos();
+if (pestana === 'biblioteca' || pestana === 'tienda') {
+    grid.style.display = 'grid';
+    document.getElementById('topbar').classList.remove('oculto');
+    document.getElementById('filtroEstado').value = pestana === 'biblioteca' ? 'si' : 'no';
+    mostrarJuegos();
         links[pestana === 'biblioteca' ? 0 : 1].classList.add('activo');
     } else {
         const mapa = {
