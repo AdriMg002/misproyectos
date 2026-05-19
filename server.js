@@ -13,9 +13,21 @@ if (!MONGODB_URI) {
     process.exit(1);
 }
 
+// Esperar a que MongoDB conecte antes de iniciar el servidor
 mongoose.connect(MONGODB_URI)
-    .then(() => console.log('✅ Conectado a MongoDB'))
-    .catch(err => console.error('❌ Error conectando a MongoDB:', err));
+    .then(() => {
+        console.log('✅ Conectado a MongoDB');
+        
+        app.listen(PORT, () => {
+            console.log(`🎮 Servidor activo en: http://localhost:${PORT}`);
+            console.log(`✅ Usando MongoDB para persistencia de datos`);
+        });
+    })
+    .catch(err => {
+        console.error('❌ Error conectando a MongoDB:', err);
+        console.error('⚠️ El servidor NO se iniciará sin MongoDB');
+        process.exit(1);
+    });
 
 // ===== SCHEMAS =====
 const UsuarioSchema = new mongoose.Schema({
