@@ -4,7 +4,11 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
+if (!PORT) {
+    console.error('❌ Railway no asignó un puerto');
+    process.exit(1);
+}
 
 // ===== CONEXIÓN A MONGODB =====
 const MONGODB_URI = process.env.MONGODB_URI;
