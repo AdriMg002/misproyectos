@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Aplicación</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f0f1a;
+            color: #e8e8e8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(233,69,96,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(78,204,163,0.04) 0%, transparent 50%);
+        }
+        .selector-container {
+            text-align: center;
+            padding: 40px;
+        }
+        .selector-container h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .selector-container .subtitulo {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .selector-container .usuario-actual {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a2e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            color: #ccc;
+            border: 1px solid #2a2a3e;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .app-card {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #2a2a3e;
+            text-decoration: none;
+            color: #e8e8e8;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: #e94560;
+            box-shadow: 0 15px 40px rgba(233,69,96,0.15);
+        }
+        .app-card .icono {
+            font-size: 56px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .app-card h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        .app-card p {
+            font-size: 12px;
+            color: #888;
+        }
+        .btn-cerrar {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 24px;
+            background: rgba(233,69,96,0.1);
+            color: #e94560;
+            border: 1px solid rgba(233,69,96,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-cerrar:hover {
+            background: rgba(233,69,96,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Si no hay sesión, redirigir al login
+        if (!localStorage.getItem('usuarioActual')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <div class="selector-container">
+        <h1>👋 Bienvenido</h1>
+        <p class="subtitulo">Elige una aplicación</p>
+        <div class="usuario-actual">
+            <span>👤</span>
+            <span id="nombreUsuario"></span>
+        </div>
+
+        <div class="apps-grid">
+            <a href="/apps/juegos/index.html" class="app-card">
+                <span class="icono">🎮</span>
+                <h2>Mi Colección</h2>
+                <p>Gestiona tu biblioteca de videojuegos</p>
+            </a>
+            <a href="/apps/banco/index.html" class="app-card">
+                <span class="icono">🏦</span>
+                <h2>Mi Banco</h2>
+                <p>Controla tus finanzas personales</p>
+            </a>
+        </div>
+
+        <a href="#" class="btn-cerrar" onclick="cerrarSesion()">🚪 Cerrar sesión</a>
+    </div>
+
+    <script>
+    // Si no hay sesión, redirigir al login
+    if (!localStorage.getItem('usuarioActual')) {
+        window.location.href = 'login.html';
+    }
+
+    // Mostrar nombre de usuario
+    document.getElementById('nombreUsuario').textContent = localStorage.getItem('usuarioActual');
+    
+    // Función para cerrar sesión
+    function cerrarSesion() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1679 @@
+[
+  {
+    "id": 1777211155448,
+    "nombre": "Minecraft",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777211174260,
+    "nombre": "Saints Row The Third",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777211384709,
+    "nombre": "El Padrino Don Corleone",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777211618069,
+    "nombre": "Mario Tennis Aces",
+    "plataforma": "Switch",
+    "imagenData": null
+  },
+  {
+    "id": 1777211688698,
+    "nombre": "Mario Kart World",
+    "plataforma": "Switch 2",
+    "imagenData": null
+  },
+  {
+    "id": 1777213916975,
+    "nombre": "60 Parsecs",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777213933950,
+    "nombre": "Age Of Mythology Retold",
+    "plataforma": "PS5",
+    "imagenData": null
+  },
+  {
+    "id": 1777213945388,
+    "nombre": "Arcania",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777213958278,
+    "nombre": "Assassin Creed IV Black Flag",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777213969807,
+    "nombre": "Assassin Creed Syndicate",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777213984768,
+    "nombre": "Assassin Creed Unity",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214005882,
+    "nombre": "Bioshock Infinite",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214019855,
+    "nombre": "Bioshock The Collection",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214034442,
+    "nombre": "Bloons TD 5",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214041519,
+    "nombre": "Bloons TD 6",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214048562,
+    "nombre": "Brotato",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214058858,
+    "nombre": "Contraband Police",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214070981,
+    "nombre": "Crash Bandicoot N Sane Trilogy",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214082533,
+    "nombre": "Crash Team Racing Nitro Fueled",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214098365,
+    "nombre": "Dragon Ball FighterZ",
+    "plataforma": "PS4",
+    "dificultad": "Fácil",
+    "loTengo": true,
+    "tipoPosesion": "digital",
+    "imagenData": null
+  },
+  {
+    "id": 1777214108994,
+    "nombre": "Gas Station Simulator",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214123280,
+    "nombre": "God Of War",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214131476,
+    "nombre": "Hotline Miami",
+    "plataforma": "PS4",
+    "dificultad": "Fácil",
+    "loTengo": true,
+    "tipoPosesion": "digital",
+    "imagenData": null
+  },
+  {
+    "id": 1777214138253,
+    "nombre": "Jump King",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214152148,
+    "nombre": "Mafia II Edicion Definitiva",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214166915,
+    "nombre": "Mafia III Edicion Definitiva",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214181179,
+    "nombre": "Mafia Edicion Definitiva",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214190561,
+    "nombre": "Maneater",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214197092,
+    "nombre": "Nexomon",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214209894,
+    "nombre": "Plants Vs Zombies Garden Warfare",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214217319,
+    "nombre": "Portal Knights",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214225000,
+    "nombre": "Risen",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214233496,
+    "nombre": "Rock Of Ages 3",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214251810,
+    "nombre": "Sleeping Dogs",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214261622,
+    "nombre": "Spyro",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214275876,
+    "nombre": "Stardew Valley",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214283271,
+    "nombre": "Super Meat Boy",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214291828,
+    "nombre": "Super Meat Boy Forever",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214299942,
+    "nombre": "Tails Of Iron",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214487249,
+    "nombre": "The Binding Of Isaac Rebirth",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214495197,
+    "nombre": "The Escapists",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214510801,
+    "nombre": "Unravel",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214519457,
+    "nombre": "Vampire Survivors",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777214528781,
+    "nombre": "Worms Rumble",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777219514451,
+    "nombre": "Super Mario Maker 2",
+    "plataforma": "Switch",
+    "imagenData": null
+  },
+  {
+    "id": 1777219531284,
+    "nombre": "Mario & Sonic En Los Juegos Olimpicos Tokyo 2020",
+    "plataforma": "Switch",
+    "imagenData": null
+  },
+  {
+    "id": 1777219549440,
+    "nombre": "Rocket League",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777219557240,
+    "nombre": "Final Fantasy XV",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777219570170,
+    "nombre": "Plants Vs Zombies Garden Warfare 2",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777219578500,
+    "nombre": "Fifa 19",
+    "plataforma": "PS4",
+    "imagenData": null
+  },
+  {
+    "id": 1777219590116,
+    "nombre": "Pro Evolution Soccer 2011",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219599398,
+    "nombre": "Pro Evolution Soccer 2012",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219609932,
+    "nombre": "Fallout 3",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 40
+  },
+  {
+    "id": 1777219618031,
+    "nombre": "Fallout New Vegas",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219630566,
+    "nombre": "Batman Arkham Asylum",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219642976,
+    "nombre": "Grand Theft Auto IV",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219700186,
+    "nombre": "El Padrino II",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219733523,
+    "nombre": "Assassin Creed Revelations",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219741952,
+    "nombre": "Minecraft",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219772197,
+    "nombre": "Dragon Ball Raging Blast",
+    "plataforma": "PS3",
+    "dificultad": "Fácil",
+    "imagenData": null
+  },
+  {
+    "id": 1777219788331,
+    "nombre": "Dragon Ball Z Burst Limit",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219798767,
+    "nombre": "L.A. Noire",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219848980,
+    "nombre": "Phineas Y Ferb En La 2º Dimension",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219857007,
+    "nombre": "inFamous",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219864871,
+    "nombre": "inFamous 2",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219880212,
+    "nombre": "God Of War 3",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219898436,
+    "nombre": "Uncharted El Tesoro De Drake",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219918125,
+    "nombre": "Ratchet & Clank Armados Hasta Los Dientes",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219933881,
+    "nombre": "LEGO Piratas Del Caribe",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777219945697,
+    "nombre": "LEGO Marvel Super Heroes",
+    "plataforma": "PS3",
+    "imagenData": null
+  },
+  {
+    "id": 1777390200348,
+    "nombre": "Marvel Rivals",
+    "plataforma": "PS5",
+    "imagenData": null
+  },
+  {
+    "id": 1777390537913,
+    "nombre": "Genshin Impact",
+    "plataforma": "PC",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1777393428488,
+    "nombre": "The Sims Bustin Out",
+    "plataforma": "GBA",
+    "imagenData": null
+  },
+  {
+    "id": 1777393439855,
+    "nombre": "Pokemon Edicion Rubi",
+    "plataforma": "GBA",
+    "imagenData": null
+  },
+  {
+    "id": 1777393454372,
+    "nombre": "Mario & Luigi Superstar Saga",
+    "plataforma": "GBA",
+    "imagenData": null
+  },
+  {
+    "id": 1777399076163,
+    "nombre": "El Padrino",
+    "plataforma": "PSP",
+    "imagenData": null
+  },
+  {
+    "id": 1777639677481,
+    "nombre": "Super Mario Galaxy",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 12
+  },
+  {
+    "id": 1777639687742,
+    "nombre": "Super Mario Galaxy 2",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777639851015,
+    "nombre": "New Super Mario Bros Wii",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777639884191,
+    "nombre": "El Padrino El Chantaje",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 35
+  },
+  {
+    "id": 1777639894723,
+    "nombre": "Wii Sports Resort",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 10
+  },
+  {
+    "id": 1777639931482,
+    "nombre": "Mario Strikers Charged Football",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 12
+  },
+  {
+    "id": 1777639946713,
+    "nombre": "Wii Fit Plus",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777639956919,
+    "nombre": "Mario Party 9",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777639979155,
+    "nombre": "Mario & Sonic En Los Juegos Olimpicos London 2012",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 10
+  },
+  {
+    "id": 1777640005231,
+    "nombre": "Mario & Sonic En Los Juegos Olimpicos De Invierno",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 10
+  },
+  {
+    "id": 1777640021115,
+    "nombre": "Wii Sports",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 10
+  },
+  {
+    "id": 1777640091678,
+    "nombre": "Inazuma Eleven Strikers",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777640100548,
+    "nombre": "Los Simpsons El Videojuego",
+    "plataforma": "WII",
+    "imagenData": null,
+    "precio": 15
+  },
+  {
+    "id": 1777657782113,
+    "nombre": "Zenless Zone Zero",
+    "plataforma": "PC",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": "C:\\Program Files\\HoYoPlay\\games\\ZenlessZoneZero Game\\ZenlessZoneZero.exe"
+  },
+  {
+    "id": 1777657873211,
+    "nombre": "Genshin Impact",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1777657938168,
+    "nombre": "Honkai Star Rail",
+    "plataforma": "PC",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": "C:\\Program Files\\HoYoPlay\\games\\Star Rail Games\\StarRail.exe"
+  },
+  {
+    "id": 1777825421270,
+    "nombre": "NTE",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162198334,
+    "nombre": "Cuphead",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162220208,
+    "nombre": "Marvel Spider Man Miles Morales",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162232866,
+    "nombre": "Diablo III Reaper Of Souls",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162242259,
+    "nombre": "Dave The Diver",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162249897,
+    "nombre": "Dredge",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162258301,
+    "nombre": "Path Of Exile",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162268490,
+    "nombre": "Cat Quest III",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162278007,
+    "nombre": "Smite",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162286946,
+    "nombre": "Cyberpunk 2077",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162297901,
+    "nombre": "Untitled Goose Game",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162309787,
+    "nombre": "Ghost Of Tsushima",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162315712,
+    "nombre": "Trove",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162323979,
+    "nombre": "Marvel Spider Man",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162336330,
+    "nombre": "Goat Simulator",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162347087,
+    "nombre": "God Of War Ghost Of Sparta",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 50,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162468208,
+    "nombre": "Counter Strike Global Offensive",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162482635,
+    "nombre": "Plants Vs Zombies Replanted",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162520776,
+    "nombre": "My Friend Peppa Pig",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162530007,
+    "nombre": "The Plucky Squire",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162536846,
+    "nombre": "Cat Quest II",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162545333,
+    "nombre": "Far Cry 4",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162552016,
+    "nombre": "Fall Guys",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162559950,
+    "nombre": "It Takes Two",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162583960,
+    "nombre": "Scribblenauts Showdown",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162592073,
+    "nombre": "The Bat D",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162605407,
+    "nombre": "Astro Playroom",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162615365,
+    "nombre": "My Name Is Mayo 3",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162626005,
+    "nombre": "Dragon Ball Xenoverse",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162645942,
+    "nombre": "Destroy All Humans 2 Reprobed",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162652979,
+    "nombre": "Sea Of Stars",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162665251,
+    "nombre": "PowerWash Simulator",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162685068,
+    "nombre": "The Witcher 3",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162697339,
+    "nombre": "Destroy All Humans Remake",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162706298,
+    "nombre": "Assassin Creed III",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162712493,
+    "nombre": "Cat Quest",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162725969,
+    "nombre": "God Of War Chains Of Olympus",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 50,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162736019,
+    "nombre": "Dragon Ball Z Kakarot",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162747316,
+    "nombre": "Days Gone",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162764362,
+    "nombre": "My Name Is Mayo 2",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162779034,
+    "nombre": "Grand Theft Auto San Andreas",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778162807248,
+    "nombre": "60 Seconds Reatomized",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191631990,
+    "nombre": "The Pigeon P",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191648735,
+    "nombre": "Assassin Creed Revelations",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191659929,
+    "nombre": "Horizon Forbidden West",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191668475,
+    "nombre": "Unpacking",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191690760,
+    "nombre": "SpongeBob SquarePants Battle For Bikini Bottom",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191708084,
+    "nombre": "Uncharted 3 Drake Reception",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191728253,
+    "nombre": "God Of War III Remastered",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191735951,
+    "nombre": "The Quarry",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191753252,
+    "nombre": "LEGO Star Wars III The Clone Wars",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191762179,
+    "nombre": "Grand Theft Auto Vice City",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191775263,
+    "nombre": "Assassin Creed Brotherhood",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191786850,
+    "nombre": "Immortals Fenyx Rising",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191793376,
+    "nombre": "Far Cry Primal",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191805546,
+    "nombre": "Detroit Become Human",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191812795,
+    "nombre": "Horizon Zero Dawn",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191823471,
+    "nombre": "Uncharted 2 Among Thieves",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191832935,
+    "nombre": "God Of War II",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 50,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191840385,
+    "nombre": "Beat Cop",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191856935,
+    "nombre": "LEGO Indiana Jones 2 The Adventure Continue",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191866353,
+    "nombre": "Assassin Creed II",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191877518,
+    "nombre": "Grand Theft Auto III",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191884355,
+    "nombre": "Knack",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191890659,
+    "nombre": "Far Cry 3",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191900535,
+    "nombre": "South Park The Fractured But Whole",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191907273,
+    "nombre": "Stray",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191914895,
+    "nombre": "God Of War 1",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 50,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191932158,
+    "nombre": "Uncharted Drake Fortune",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191940739,
+    "nombre": "Slime Rancher",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191947598,
+    "nombre": "The Cow G",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191954413,
+    "nombre": "Slyde",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191964716,
+    "nombre": "My Name Is Mayo",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191976635,
+    "nombre": "Adventure Time Pirates Of The Enchiridion",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191984742,
+    "nombre": "MediEvil Remake",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778191995674,
+    "nombre": "South Park The Stick Of Truth",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778692223484,
+    "nombre": "Assassin Creed Rogue",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778692341491,
+    "nombre": "The Copper Age",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778692410594,
+    "nombre": "The Pig D",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778692463506,
+    "nombre": "Zenless Zone Zero",
+    "plataforma": "PS5",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946800507,
+    "nombre": "New Super Mario Bros",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946821082,
+    "nombre": "Pokemon Oro",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 170,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946830122,
+    "nombre": "Pokemon Plata",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946840866,
+    "nombre": "Mario Kart DS",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946851962,
+    "nombre": "GTA Chinatown Wars",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 50,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946870050,
+    "nombre": "Pokemon Mundo Misterioso Exploradores Del Cielo",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 200,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778946995616,
+    "nombre": "Mario & Luigi Viaje Al Centro De Bowser",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 35,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947008480,
+    "nombre": "Pokemon Negro",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947015928,
+    "nombre": "Pokemon Blanco",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 80,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947029640,
+    "nombre": "Animal Crossing Wild World",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 25,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947070816,
+    "nombre": "El Profesor Layton Y El Futuro Perdido",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 40,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947095855,
+    "nombre": "Inazuma Eleven",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 25,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947108255,
+    "nombre": "Inazuma Eleven 2 Tormenta De Fuego",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 35,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947117783,
+    "nombre": "Inazuma Eleven 2 Ventisca Eterna",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 20,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947145070,
+    "nombre": "Inazuma Eleven 3 Rayo Celeste",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947156622,
+    "nombre": "Inazuma Eleven 3 Fuego Explosivo",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947167335,
+    "nombre": "Inazuma Eleven GO Galaxy",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947185398,
+    "nombre": "Inazuma Eleven 3 La Amenaza Del Ogro",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947225470,
+    "nombre": "Inazuma Eleven Go Luz",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947243709,
+    "nombre": "Inazuma Eleven GO Sombra",
+    "plataforma": "3DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947291109,
+    "nombre": "Club Penguin Elite Penguin Force",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947312613,
+    "nombre": "Club Penguin Elite Penguin Force Herbert Revenge",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947351940,
+    "nombre": "Pokemon Platino",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947361788,
+    "nombre": "Pokemon Negro 2",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947370436,
+    "nombre": "Pokemon Blanco 2",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 140,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947388052,
+    "nombre": "Super Mario 64 DS",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947444771,
+    "nombre": "Pokemon Mundo Misterioso Exploradores Del Tiempo",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947462203,
+    "nombre": "Pokemon Mundo Misterioso Exploradores De La Oscuridad",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947479971,
+    "nombre": "Pokemon Mundo Misterioso Equipo De Rescate Azul",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778947495187,
+    "nombre": "Pokemon Mundo Misterioso Equipo De Rescate Rojo",
+    "plataforma": "DS",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778966675063,
+    "nombre": "Cars 2",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778966770213,
+    "nombre": "God Of War Ascension",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 20,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778966789461,
+    "nombre": "Batman Arkham City",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778966870092,
+    "nombre": "Pro Evolution Soccer 2014",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778966931732,
+    "nombre": "Kung Fu Panda 2",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967014851,
+    "nombre": "Jak II",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 40,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967021739,
+    "nombre": "Jak 3",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 40,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967120602,
+    "nombre": "Ratchet & Clank",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 70,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967140913,
+    "nombre": "Ratchet & Clank A Crack In Time",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967150426,
+    "nombre": "Ratchet & Clank 2 Going Commando",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 70,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967159065,
+    "nombre": "Ratchet & Clank 3 Up Your Arsenal",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 70,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967189697,
+    "nombre": "Ratchet & Clank All 4 One",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 20,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967206193,
+    "nombre": "Ratchet & Clank Deadlocked",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967219345,
+    "nombre": "Ratchet & Clank Into The Nexus",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967287944,
+    "nombre": "Ratchet & Clank Full Frontal Assault",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967314087,
+    "nombre": "Up",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 15,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967439014,
+    "nombre": "Dragon Age II",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967449334,
+    "nombre": "Dragon Age Origins",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967488717,
+    "nombre": "Dragon Ball Z Ultimate Tenkaichi",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967507725,
+    "nombre": "Angry Birds Trilogy",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967519406,
+    "nombre": "Angry Birds Star Wars",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967615428,
+    "nombre": "Skylanders SWAP Force",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 10,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967624564,
+    "nombre": "Skylanders Giants",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967638788,
+    "nombre": "Skylanders Spyro Adventure",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967649859,
+    "nombre": "Skylanders Trap Team",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1778967661107,
+    "nombre": "Skylanders SuperChargers",
+    "plataforma": "PS3",
+    "imagenData": null,
+    "precio": 5,
+    "rutaPersonalizada": null
+  },
+  {
+    "id": 1779047434110,
+    "nombre": "SpongeBob Squarepants The Cosmic Shake",
+    "plataforma": "PS4",
+    "imagenData": null,
+    "precio": null,
+    "rutaPersonalizada": null
+  }
+]

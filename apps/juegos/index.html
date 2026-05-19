@@ -1,0 +1,224 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Colección de Videojuegos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        /* ===== OPCIONES (integrado) ===== */
+        .panel-opciones {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 10px;
+        }
+        .panel-opciones h2 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .opcion-tarjeta {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a3e;
+        }
+        .opcion-tarjeta h3 {
+            color: #f0a500;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        .opcion-fila {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .opcion-fila label {
+            color: #a0a0b0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .opcion-fila select {
+            padding: 10px 14px;
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #e8e8e8;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .btn-guardar-opciones {
+            width: 100%;
+            padding: 14px;
+            background: #4ecca3;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-guardar-opciones:hover { opacity: 0.9; transform: translateY(-1px); }
+    </style>
+</head>
+<body style="margin:0; padding:0; overflow:hidden; height:100vh; max-height:100vh;">
+
+
+    <script>
+        if (!localStorage.getItem('usuarioActual')) {
+            window.location.href = '/selector.html';
+        }
+    </script>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo">🎮</span>
+            <span class="sidebar-titulo">Mi Colección</span>
+            <button class="sidebar-toggle" onclick="toggleSidebar()" title="Minimizar menú">◀</button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link activo" onclick="cambiarPestanaClasica('biblioteca')">
+                <span class="sidebar-icono">📚</span><span>Biblioteca</span>
+            </a>
+            <a href="#" class="sidebar-link" onclick="cambiarPestanaClasica('tienda')">
+                <span class="sidebar-icono">🛒</span><span>Tienda</span>
+            </a>
+            <a href="#" class="sidebar-link" onclick="cambiarPestanaClasica('accesorios')">
+                <span class="sidebar-icono">🎮</span><span>Accesorios</span>
+            </a>
+            <a href="#" class="sidebar-link" id="linkAgregar" onclick="cambiarPestanaClasica('agregar')">
+                <span class="sidebar-icono">➕</span><span>Agregar Juego</span>
+            </a>
+            <a href="#" class="sidebar-link" id="linkAdmin" style="display:none;" onclick="cambiarPestanaClasica('admin')">
+                <span class="sidebar-icono">👥</span><span>Usuarios</span>
+            </a>
+            <a href="#" class="sidebar-link" id="linkEmuladores" style="display:none;" onclick="cambiarPestanaClasica('emuladores')">
+                <span class="sidebar-icono">⚡</span><span>Emuladores</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-usuario">
+                <span class="sidebar-avatar">👤</span>
+                <div class="sidebar-usuario-info">
+                    <span id="sidebarNombreUsuario"></span>
+                    <span id="sidebarContadorPlatinos" style="display:none;color:var(--warning);font-size:11px;"></span>
+                </div>
+            </div>
+            <div class="sidebar-acciones">
+                <button onclick="cambiarPestanaClasica('opciones')" class="sidebar-icono-btn" title="Opciones">⚙️</button>
+                <button onclick="cerrarSesion()" class="sidebar-icono-btn" title="Cerrar Sesión">🚪</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="main-content" id="mainContent" style="overflow-y:auto; overflow-x:hidden; height:100vh; max-height:100vh;">
+        <!-- Barra superior -->
+        <header class="topbar" id="topbar">
+            <div class="topbar-filtros">
+                <input type="text" id="buscador" placeholder="🔍 Buscar..." class="input-busqueda">
+                <select id="filtroPlataforma" class="select-busqueda">
+                    <option value="">Todas las plataformas</option>
+                    <option value="GBA">GBA</option><option value="DS">DS</option><option value="3DS">3DS</option>
+                    <option value="PSP">PSP</option><option value="PS2">PS2</option><option value="PS3">PS3</option>
+                    <option value="PS4">PS4</option><option value="PS5">PS5</option>
+                    <option value="Switch">Switch</option><option value="Switch 2">Switch 2</option>
+                    <option value="PC">PC</option>
+                    <option value="WII">WII</option>
+                </select>
+                <select id="filtroEstado" class="select-busqueda">
+                    <option value="">Todos</option>
+                    <option value="si">✅ Lo tengo</option>
+                    <option value="no">❌ No lo tengo</option>
+                    <option value="completado">✅ Completado</option>
+                    <option value="platino">🏆 Platino</option>
+                    <option value="jugando">🎮 Jugando</option>
+                    <option value="pendiente">📅 Pendiente</option>
+                    <option value="abandonado">❌ Abandonado</option>
+                </select>
+                <select id="ordenar" class="select-busqueda">
+                    <option value="nombre-asc">A-Z</option><option value="nombre-desc">Z-A</option>
+                    <option value="plataforma">Plataforma</option><option value="progreso">Progreso</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Grid -->
+        <div id="gridJuegos" class="gridJuegos" style="overflow:visible !important; max-height:none !important; height:auto !important; padding-bottom:120px !important;"></div>
+
+        <!-- Paneles -->
+        <div id="panelAdmin" style="display:none;"></div>
+        <div id="panelEmuladores" style="display:none;"></div>
+        <div id="panelAccesorios" style="display:none;"></div>
+        <div id="panelAgregar" style="display:none;"></div>
+        <div id="panelOpciones" style="display:none;"></div>
+    </main>
+
+    <!-- Modal de logros -->
+    <div id="modalLogros" class="modal-logros">
+        <div class="modal-logros-contenido"></div>
+    </div>
+
+    <script>
+        document.getElementById('sidebarNombreUsuario').textContent = localStorage.getItem('usuarioActual');
+        
+        // Mostrar siempre Agregar Juego
+        document.getElementById('linkAgregar').style.display = 'flex';
+
+        // Admin y Emuladores solo para admin
+        if (localStorage.getItem('esAdmin') === 'true') {
+            document.getElementById('linkAdmin').style.display = 'flex';
+            document.getElementById('linkEmuladores').style.display = 'flex';
+        }
+
+        function cerrarSesion() { 
+            window.location.href = '/selector.html'; 
+        }
+    
+        document.getElementById('sidebarNombreUsuario').textContent = localStorage.getItem('usuarioActual');
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('minimizado');
+        }
+
+        async function cargarContadorPlatinos() {
+            try {
+                const res = await fetch(`/api/estado/${localStorage.getItem('usuarioActual')}`);
+                const estado = await res.json();
+                let platinos = 0;
+                for (const key in estado) {
+                    if (estado[key].progreso === 'Platino') platinos++;
+                }
+                const contador = document.getElementById('sidebarContadorPlatinos');
+                if (platinos > 0) { contador.textContent = '🏆 ' + platinos; contador.style.display = 'block'; }
+            } catch (e) {}
+        }
+        cargarContadorPlatinos();
+        window.addEventListener('actualizarContadores', cargarContadorPlatinos);
+
+        async function aplicarVistaPreferida() {
+            try {
+                if (document.referrer && document.referrer.includes('steam.html')) return;
+                const usuario = localStorage.getItem('usuarioActual');
+                if (!usuario) return;
+                const res = await fetch(`/api/configuracion/${usuario}`);
+                const config = await res.json();
+                if (config.vista === 'steam') window.location.href = 'steam.html';
+            } catch (e) {}
+        }
+        aplicarVistaPreferida();
+    </script>
+
+    <script src="js/config.js"></script>
+    <script src="js/clasica.js"></script>
+</body>
+</html>

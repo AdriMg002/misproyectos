@@ -1,0 +1,279 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Mi Colección</title>
+    <style>
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-input: #1a1a2e;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --accent: #e94560;
+            --accent-hover: #c73652;
+            --success: #4ecca3;
+            --border: #2a2a3e;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(233, 69, 96, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(78, 204, 163, 0.04) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 56px;
+            margin-bottom: 4px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .login-subtitulo {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 24px;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            transition: all var(--transition);
+            border: none;
+            font-size: 14px;
+            border-radius: 6px;
+        }
+        .tab:hover { color: var(--text-primary); }
+        .tab.activo {
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(233,69,96,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all var(--transition);
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(233,69,96,0.1);
+        }
+        .form-group input::placeholder { color: #555; }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(233,69,96,0.3);
+        }
+        .btn-login:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(233,69,96,0.4);
+        }
+
+        .mensaje {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            min-height: 20px;
+        }
+        .mensaje.error { color: var(--accent); }
+        .mensaje.exito { color: var(--success); }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-logo">🎮</div>
+        <h1>Mi Colección</h1>
+        <p class="login-subtitulo">Gestor de Videojuegos</p>
+
+        <div class="tabs">
+            <button class="tab activo" id="tabLogin" onclick="cambiarTab('login')">Iniciar Sesión</button>
+            <button class="tab" id="tabRegistro" onclick="cambiarTab('registro')">Registrarse</button>
+        </div>
+
+        <form id="formLogin" onsubmit="return login(event)">
+            <div class="form-group">
+                <label>👤 Usuario</label>
+                <input type="text" id="loginUsuario" placeholder="Tu nombre de usuario" required>
+            </div>
+            <div class="form-group">
+                <label>🔒 Contraseña</label>
+                <input type="password" id="loginPassword" placeholder="Tu contraseña" required>
+            </div>
+            <button type="submit" class="btn-login">🚀 Entrar</button>
+        </form>
+
+        <form id="formRegistro" style="display: none;" onsubmit="return registro(event)">
+            <div class="form-group">
+                <label>👤 Usuario</label>
+                <input type="text" id="regUsuario" placeholder="Elige un nombre de usuario" required minlength="3">
+            </div>
+            <div class="form-group">
+                <label>🔒 Contraseña</label>
+                <input type="password" id="regPassword" placeholder="Elige una contraseña" required minlength="4">
+            </div>
+            <button type="submit" class="btn-login">✨ Crear Cuenta</button>
+        </form>
+
+        <div class="mensaje" id="mensaje"></div>
+    </div>
+
+    <script>
+        let tabActual = 'login';
+
+        function cambiarTab(tab) {
+            tabActual = tab;
+            document.getElementById('tabLogin').classList.toggle('activo', tab === 'login');
+            document.getElementById('tabRegistro').classList.toggle('activo', tab === 'registro');
+            document.getElementById('formLogin').style.display = tab === 'login' ? 'block' : 'none';
+            document.getElementById('formRegistro').style.display = tab === 'registro' ? 'block' : 'none';
+            document.getElementById('mensaje').textContent = '';
+            document.getElementById('mensaje').className = 'mensaje';
+        }
+
+        function mostrarMensaje(texto, tipo) {
+            const mensaje = document.getElementById('mensaje');
+            mensaje.textContent = texto;
+            mensaje.className = 'mensaje ' + tipo;
+        }
+
+        async function login(e) {
+            e.preventDefault();
+            const usuario = document.getElementById('loginUsuario').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usuario, password })
+                });
+                const data = await res.json();
+
+                if (data.ok) {
+                    mostrarMensaje('✅ Iniciando sesión...', 'exito');
+                    localStorage.clear();
+                    localStorage.setItem('usuarioActual', data.usuario);
+                    localStorage.setItem('esAdmin', data.admin || false);
+                    setTimeout(() => { window.location.href = 'selector.html'; }, 500);
+                } else {
+                    mostrarMensaje('❌ ' + data.error, 'error');
+                }
+            } catch (err) {
+                mostrarMensaje('❌ Error de conexión', 'error');
+            }
+            return false;
+        }
+
+        async function registro(e) {
+            e.preventDefault();
+            const usuario = document.getElementById('regUsuario').value.trim();
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                const res = await fetch('/api/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usuario, password })
+                });
+                const data = await res.json();
+
+                if (data.ok) {
+                    mostrarMensaje('✅ Cuenta creada. Inicia sesión.', 'exito');
+                    cambiarTab('login');
+                    document.getElementById('loginUsuario').value = usuario;
+                    document.getElementById('loginPassword').value = '';
+                } else {
+                    mostrarMensaje('❌ ' + data.error, 'error');
+                }
+            } catch (err) {
+                mostrarMensaje('❌ Error de conexión', 'error');
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

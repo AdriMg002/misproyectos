@@ -1,0 +1,16 @@
+{
+  "usuarios": [
+    {
+      "usuario": "amunoz58",
+      "password": "0740d7ad3bc26ef6df54b921c86877ff49c10e226a9d36aed147b569879d85d7",
+      "fechaCreacion": "2026-04-26T21:19:03.309Z",
+      "admin": false
+    },
+    {
+      "usuario": "admin",
+      "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+      "admin": false,
+      "fechaCreacion": "2026-04-26T21:37:54.475Z"
+    }
+  ]
+}

@@ -1,0 +1,1141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #1a1a2e;
+    --bg-card: #16213e;
+    --bg-input: #1a1a2e;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0b0;
+    --text-muted: #6b6b80;
+    --accent: #e94560;
+    --accent-hover: #c73652;
+    --success: #4ecca3;
+    --warning: #f0a500;
+    --info: #3498db;
+    --border: #2a2a3e;
+    --border-light: #333;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+    --transition: 0.2s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    padding: 16px 0;
+    transition: width 0.3s ease;
+}
+
+.sidebar.minimizado {
+    width: 60px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+}
+
+.sidebar-logo { font-size: 28px; flex-shrink: 0; }
+
+.sidebar-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+    transition: all var(--transition);
+}
+.sidebar-toggle:hover { background: rgba(255,255,255,0.05); color: #fff; }
+
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 8px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--transition);
+}
+.sidebar-link:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+.sidebar-link.activo { background: rgba(233, 69, 96, 0.1); color: var(--accent); font-weight: 600; }
+
+.sidebar-icono { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+
+.sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-usuario { display: flex; align-items: center; gap: 8px; }
+.sidebar-avatar { font-size: 22px; }
+.sidebar-usuario-info { display: flex; flex-direction: column; font-size: 12px; color: var(--text-secondary); }
+
+.sidebar-acciones { display: flex; gap: 4px; }
+
+.sidebar-icono-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
+}
+.sidebar-icono-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+
+/* Sidebar minimizada */
+.sidebar.minimizado .sidebar-titulo,
+.sidebar.minimizado .sidebar-link span:not(.sidebar-icono),
+.sidebar.minimizado .sidebar-usuario-info,
+.sidebar.minimizado .sidebar-acciones { display: none; }
+
+.sidebar.minimizado .sidebar-header { justify-content: center; padding: 10px 0; }
+.sidebar.minimizado .sidebar-nav { padding: 0 4px; }
+.sidebar.minimizado .sidebar-link { justify-content: center; padding: 10px; }
+.sidebar.minimizado .sidebar-footer { justify-content: center; }
+.sidebar.minimizado .sidebar-toggle {
+    position: absolute;
+    right: -16px;
+    top: 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    z-index: 102;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-left: 240px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.minimizado ~ .main-content {
+    margin-left: 60px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: var(--bg-secondary);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    margin: 0 20px;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.topbar-filtros { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.input-busqueda {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 13px;
+    width: 180px;
+    outline: none;
+    transition: all var(--transition);
+}
+.input-busqueda:focus { border-color: var(--accent); }
+
+.select-busqueda {
+    padding: 8px 30px 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+.topbar-acciones { display: flex; gap: 8px; }
+
+.btn-agregar {
+    padding: 9px 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all var(--transition);
+}
+.btn-agregar:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+/* ===== GRID ===== */
+.gridJuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+    padding: 20px;
+}
+
+/* ===== TARJETA ===== */
+.tarjetaJuego {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+.tarjetaJuego:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+.tarjetaJuego.loTengo {
+    border-color: var(--border-color, rgba(78, 204, 163, 0.4));
+}
+
+.tarjetaJuego .bannerPlataforma { width: 100%; height: 28px; object-fit: fill; display: block; }
+.tarjetaJuego .bannerPlataformaText {
+    width: 100%; height: 28px; padding: 0 10px; font-size: 11px; font-weight: 700;
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    letter-spacing: 2px; text-transform: uppercase;
+}
+
+.tarjetaJuego .contenedorImagen { width: 100%; overflow: hidden; background: #0d0d1a; display: flex; flex-direction: column; }
+.tarjetaJuego .wrapperImagen { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+.tarjetaJuego .imagenJuego { width: 100%; height: 100%; object-fit: fill; transition: transform 0.4s ease; }
+.tarjetaJuego:hover .imagenJuego { transform: scale(1.06); }
+.tarjetaJuego .sinImagen { width: 100%; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; background: #0d0d1a; color: #3a3a4a; font-size: 44px; }
+
+.tarjetaJuego .infoJuego { padding: 12px 14px; display: flex; flex-direction: column; flex: 1; }
+.tarjetaJuego .nombreJuego { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
+
+.tagsJuego { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.tag-clickeable { cursor: pointer; transition: all var(--transition); user-select: none; padding: 3px 9px; border-radius: 50px; font-size: 11px; font-weight: 600; }
+.tag-clickeable:hover { transform: scale(1.06); }
+.dificultadTag { background: rgba(255,255,255,0.08); color: var(--text-secondary); }
+.estadoTag.si { background: var(--success); color: #1a1a2e; }
+.estadoTag.no { background: rgba(233,69,96,0.15); color: var(--accent); }
+.precioTag { background: var(--warning); color: #1a1a2e; font-weight: 700; }
+.logrosTag { background: rgba(240,165,0,0.1); color: var(--warning); border: 1px solid rgba(240,165,0,0.3); }
+
+.tarjetaJuego .acciones { display: flex; gap: 5px; margin-top: auto; padding-top: 6px; }
+.btnJugar { background: var(--success); color: #1a1a2e; border: none; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; font-weight: 700; flex: 2; }
+.btnJugar:hover { opacity: 0.85; }
+.btnDesinstalar { background: #c0392b; color: #fff; border: none; padding: 6px 8px; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; font-weight: 700; }
+.btnDescargar { background: var(--info); color: #fff; border: none; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; font-weight: 700; flex: 1; }
+.btnEditar, .btnEliminar { border: none; padding: 6px 8px; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; font-weight: 600; }
+.btnEditar { background: rgba(255,255,255,0.06); color: var(--text-secondary); flex: 1; }
+.btnEliminar { background: rgba(233,69,96,0.1); color: var(--accent); }
+
+/* ===== FORMULARIO ===== */
+#formularioJuego {
+    background: var(--bg-secondary);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+#formularioJuego.oculto { display: none; }
+#formularioJuego h2 { margin-bottom: 20px; color: var(--accent); font-size: 20px; font-weight: 700; }
+#formJuego label { display: block; margin-top: 14px; margin-bottom: 5px; font-weight: 600; color: var(--text-secondary); font-size: 13px; }
+#formJuego input[type="text"],
+#formJuego input[type="file"],
+#formJuego input[type="number"],
+#formJuego select {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg-input); color: var(--text-primary); font-size: 14px; outline: none; transition: all var(--transition);
+}
+#formJuego input:focus, #formJuego select:focus { border-color: var(--accent); }
+.botonesForm { margin-top: 22px; display: flex; gap: 10px; }
+.btnGuardar { background: var(--accent); color: #fff; border: none; padding: 12px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; }
+.btnGuardar:hover { background: var(--accent-hover); }
+.btnCancelar { background: var(--border); color: var(--text-secondary); border: none; padding: 12px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; cursor: pointer; }
+
+/* ===== MODAL LOGROS ===== */
+.modal-logros {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+}
+.modal-logros.activo { display: flex; }
+.modal-logros-contenido {
+    background: var(--bg-secondary); border-radius: var(--radius-lg); width: 95%; max-width: 850px;
+    max-height: 85vh; border: 1px solid var(--border); box-shadow: var(--shadow-lg); display: flex; overflow: hidden;
+}
+.modal-logros-caratula {
+    width: 35%; min-width: 200px; background: #0d0d1a; display: flex; align-items: center;
+    justify-content: center; padding: 20px; border-right: 2px solid var(--warning);
+}
+.modal-logros-caratula img { width: 100%; max-height: 50vh; object-fit: contain; border-radius: var(--radius-md); }
+.modal-logros-lista { width: 65%; display: flex; flex-direction: column; overflow: hidden; }
+.modal-logros-header {
+    display: flex; justify-content: space-between; align-items: center; padding: 18px 22px;
+    border-bottom: 2px solid var(--warning); background: var(--bg-secondary); flex-shrink: 0;
+}
+.modal-logros-header h2 { color: var(--warning); font-size: 20px; }
+.modal-cerrar {
+    background: var(--accent); color: #fff; border: none; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; font-size: 18px; font-weight: 700;
+}
+#modalLogrosLista { overflow-y: auto; flex: 1; }
+.modal-logro-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px;
+    border-bottom: 1px solid var(--border); cursor: pointer; transition: background var(--transition);
+}
+.modal-logro-item:hover { background: rgba(255,255,255,0.03); }
+.modal-logro-item input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; accent-color: var(--success); }
+.modal-logro-item .logro-info { flex: 1; }
+.modal-logro-item .logro-nombre { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.modal-logro-item .logro-descripcion { color: var(--text-secondary); font-size: 13px; }
+.modal-logro-item .logro-check { font-size: 22px; }
+
+/* ===== BARRA PROGRESO ===== */
+.barra-progreso { width: 100%; height: 28px; background: #0d0d1a; border-radius: var(--radius-sm); overflow: hidden; position: relative; border: 1px solid var(--border); }
+.barra-progreso-relleno { height: 100%; background: linear-gradient(90deg, var(--info), var(--success)); border-radius: var(--radius-sm); transition: width 0.4s ease; }
+.barra-progreso-texto { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 12px; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8); z-index: 1; white-space: nowrap; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .sidebar { width: 60px; }
+    .sidebar-titulo, .sidebar-link span:not(.sidebar-icono), .sidebar-usuario-info, .sidebar-acciones { display: none; }
+    .sidebar-header { justify-content: center; padding: 10px 0; }
+    .sidebar-nav { padding: 0 4px; }
+    .sidebar-link { justify-content: center; padding: 10px; }
+    .sidebar-footer { justify-content: center; }
+    .main-content { margin-left: 60px; }
+    .gridJuegos { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .modal-logros-contenido { flex-direction: column; }
+    .modal-logros-caratula { width: 100%; border-right: none; border-bottom: 2px solid var(--warning); }
+    .modal-logros-lista { width: 100%; }
+}
+
+
+/* ===== FORMULARIO ===== */
+.form-campo {
+    margin-bottom: 14px;
+}
+
+.form-campo label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-campo input,
+.form-campo select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: all var(--transition);
+}
+
+.form-campo input:focus,
+.form-campo select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(233,69,96,0.08);
+}
+
+.form-switch {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--radius-sm);
+}
+
+.form-switch label {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-switch input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+.radio-opcion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.radio-opcion input[type="radio"] {
+    accent-color: var(--success);
+}
+
+.btn-guardar-form {
+    flex: 1;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.btn-guardar-form:hover {
+    background: var(--accent-hover);
+}
+
+.btn-cancelar-form {
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.btn-cancelar-form:hover {
+    background: rgba(255,255,255,0.04);
+    color: var(--text-primary);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a4a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+* { scrollbar-width: thin; scrollbar-color: #3a3a4a transparent; }
+
+.sidebar { width: 200px; }
+.sidebar-header { padding: 6px 12px 14px; }
+.sidebar-footer { padding: 8px 12px; }
+.sidebar-link { padding: 6px 10px; font-size: 12px; }
+.sidebar-icono { font-size: 14px; width: 18px; }
+.sidebar-titulo { font-size: 14px; }
+.sidebar-toggle { font-size: 10px; }
+.sidebar-logo { font-size: 20px; }
+.main-content { margin-left: 200px; }
+.sidebar.minimizado ~ .main-content { margin-left: 50px; }
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    max-height: 100vh;
+}
+
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-secondary);
+}
+
+body { zoom: 150%; }
+
+.main-content {
+    margin-left: 200px;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar-link { padding: 5px 10px; }
+.sidebar-header { padding: 6px 12px 12px; }
+
+.bannerPlataformaText.PC { background: #555; }
+
+.modal-logro-item .logro-nombre { font-size: 13px !important; }
+.modal-logro-item .logro-descripcion { font-size: 11px !important; }
+.modal-logro-item { padding: 10px 14px !important; }
+
+.modal-logros-contenido {
+    background: var(--bg-modal);
+    border-radius: var(--radius-lg);
+    width: 60%;
+    max-width: 500px;
+    max-height: 60vh;
+}
+
+.modal-logros-caratula {
+    width: 30%;
+    min-width: 120px;
+}
+
+.modal-logros-caratula img {
+    width: 100%;
+    max-height: 30vh;
+}
+
+.modal-logros-contenido {
+    width: 75%;
+    max-width: 550px;
+    max-height: 55vh;
+}
+
+.modal-logros-caratula {
+    width: 28%;
+    min-width: 110px;
+}
+
+.modal-logros {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.modal-logros-contenido {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    width: 80%;
+    max-width: 500px;
+    max-height: 55vh;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-logros-caratula {
+    display: none;
+}
+
+.modal-logros-lista {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-logros-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    flex-shrink: 0;
+}
+
+.modal-logros-header h2 {
+    color: var(--warning);
+    font-size: 16px;
+    margin: 0;
+}
+
+#modalLogrosLista {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0;
+}
+
+.modal-logro-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.modal-logros-contenido {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    width: 80%;
+    max-width: 500px;
+    max-height: 55vh;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+}
+
+.modal-logros-caratula {
+    width: 100px;
+    min-width: 100px;
+    background: #0d0d1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-right: 1px solid var(--border);
+}
+
+.modal-logros-caratula img {
+    width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.modal-logros-lista {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.indicador-progreso-img {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+.indicador-progreso-img:hover {
+    transform: scale(1.15);
+}
+.tarjetaJuego .wrapperImagen {
+    position: relative;
+}
+
+.nombreJuego {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+    gap: 6px;
+}
+.nombreJuego > span:first-child {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.main-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    overflow: hidden;
+}
+
+.main-content {
+    margin-left: 200px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gridJuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    padding-bottom: 40px;
+    align-content: start;
+}
+
+.main-content {
+    margin-left: 200px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 20px;
+}
+
+.main-content {
+    margin-left: 200px;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.main-content {
+    margin-left: 200px;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 120px;
+}
+.gridJuegos {
+    padding-bottom: 40px;
+}
+
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+}
+
+.main-content {
+    margin-left: 200px;
+    min-height: 100vh;
+    overflow: visible;
+    padding-bottom: 40px;
+}
+
+.indicador-descarga-img:hover {
+    transform: scale(1.15) !important;
+}
+
+.indicador-descarga-img:hover {
+    transform: scale(1.15) !important;
+}
+
+.acciones span[id^="btn-accion-"]:empty {
+    display: none;
+}
+
+.tarjetaJuego .bannerPlataformaText {
+    width: 100%;
+    height: 28px;
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: #1a1a1a;
+}
+
+.modal-logros {
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+}
+
+.main-content {
+    margin-left: 200px;
+    min-height: 100vh;
+    overflow: visible;
+    padding-bottom: 40px;
+}
+
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main-content {
+    overflow: hidden !important;
+}
+
+body {
+    overflow-y: auto !important;
+}
+
+#panelAgregar {
+    max-height: none;
+    overflow: visible;
+}
+
+body {
+    overflow-y: auto;
+}
+
+.topbar {
+    display: flex;
+    /* ... resto de propiedades */
+}
+
+.topbar.oculto {
+    display: none !important;
+}
+
+.panel-embed {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+}
+
+.gridJuegos {
+    height: auto !important;
+}
+
+.main-content {
+    overflow-y: auto !important;
+}
+
+.gridJuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    /* QUITA ESTO:
+    overflow-y: auto;
+    max-height: calc(100vh - 140px);
+    */
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+    /* El padding lo gestiona el grid */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;  /* Esto evita la barra del navegador */
+    height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.gridJuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    /* SIN overflow-y ni max-height */
+    flex: 1;
+    align-content: start;
+}
+
+.panel-embed {
+    overflow-y: auto;
+    flex: 1;
+    padding: 20px;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-primary, #0f0f1a);
+    padding: 15px 20px;
+    flex-shrink: 0;
+}
+
+.tarjetaJuego img {
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+
+#gridJuegos {
+    transition: opacity 0.1s;
+}
+
+/* Asegurar que el grid siempre muestre todo el contenido */
+.gridJuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    padding-bottom: 40px; /* Espacio extra al final */
+    box-sizing: border-box;
+}
+
+.main-content {
+    -webkit-overflow-scrolling: touch; /* Mejor scroll en iOS */
+}
+
+/* Prevenir cortes en el último elemento */
+.tarjetaJuego:last-child {
+    margin-bottom: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.gridJuegos {
+    will-change: transform;
+}
+
+/* Indicador visual de que hay más contenido */
+.gridJuegos::after {
+    content: '';
+    display: block;
+    height: 40px;
+    width: 100%;
+}
+
+/* CAMBIA ESTO */
+body {
+    overflow-y: auto !important;
+}
+
+/* POR ESTO */
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* CAMBIA ESTO */
+.main-content {
+    overflow: hidden !important;
+}
+
+/* POR ESTO */
+.main-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* Asegurar que el contenedor principal permita scroll completo */
+.main-content {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* El grid debe crecer libremente */
+.gridJuegos {
+    flex: 1 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+    gap: 16px !important;
+    padding: 20px !important;
+    padding-bottom: 60px !important; /* Espacio extra al final */
+    align-content: start !important;
+}
+
+/* Eliminar cualquier límite de altura */
+.gridJuegos, #gridJuegos {
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Asegurar que las tarjetas no tengan problemas de renderizado */
+.tarjetaJuego {
+    height: fit-content !important;
+}
+
+/* Forzar que el último elemento tenga margen inferior */
+.gridJuegos::after {
+    content: '';
+    display: block;
+    height: 40px;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+/* ===== SOLUCIÓN DOBLE SCROLL ===== */
+html, body {
+    overflow: hidden !important;
+    height: 100% !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.main-content {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    /* Esto fuerza que SOLO main-content tenga scroll */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar cualquier scroll extra */
+.gridJuegos {
+    overflow: visible !important;
+}
+
+/* Asegurar que el grid empuje el scroll */
+#gridJuegos {
+    min-height: 101% !important; /* Ligera mente más grande para forzar scroll */
+}
+
+/* DEBUG: Colorea las barras de scroll */
+body::-webkit-scrollbar {
+    display: none !important; /* Oculta scroll del body */
+}
+
+.main-content::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: #4ecca3 !important; /* Barra verde */
+}
+
+/* ===== SOLUCIÓN CORTE DE JUEGOS ===== */
+.gridJuegos {
+    padding-bottom: 80px !important; /* Espacio extra al final */
+}
+
+/* Añadir un pseudo-elemento al final del grid para empujar el scroll */
+#gridJuegos::after {
+    content: '';
+    display: block;
+    height: 60px;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+/* Asegurar que las tarjetas se vean completas */
+.tarjetaJuego {
+    margin-bottom: 0 !important;
+}
+
+/* Dar margen extra al último elemento visible */
+.tarjetaJuego:last-child {
+    margin-bottom: 20px !important;
+}
+
+
+.gridJuegos {
+    padding-bottom: 120px !important;
+}
+
+.panel-embed {
+    position: relative;
+    z-index: 5;
+    background: #0f0f1a;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#panelAccesorios {
+    display: none;
+}
+
+#panelAccesorios[style*="display: block"] {
+    display: block !important;
+}
+
+/* ===== PANELES INDEPENDIENTES ===== */
+#panelAdmin,
+#panelEmuladores,
+#panelAccesorios,
+#panelAgregar,
+#panelOpciones {
+    min-height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}

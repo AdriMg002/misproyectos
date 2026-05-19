@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1778953902652,
+    "nombre": "New Nintendo 2DS XL",
+    "tipo": "consola",
+    "precio": 260,
+    "imagen": null
+  },
+  {
+    "id": 1778954464973,
+    "nombre": "Astro A50 X Lightspeed",
+    "tipo": "auriculares",
+    "precio": 400,
+    "imagen": null
+  },
+  {
+    "id": 1778954589284,
+    "nombre": "Logitech G Pro X Superlight 2",
+    "tipo": "raton",
+    "precio": 120,
+    "imagen": null
+  },
+  {
+    "id": 1778954748611,
+    "nombre": "New Nintendo 2DS XL Minecraft",
+    "tipo": "consola",
+    "precio": 500,
+    "imagen": null
+  },
+  {
+    "id": 1778954932104,
+    "nombre": "Logitech G915 X Lightspeed",
+    "tipo": "teclado",
+    "precio": 180,
+    "imagen": null
+  }
+]

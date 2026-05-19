@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        body { background: #0f0f1a; color: #fff; font-family: sans-serif; padding: 20px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; background: #e94560; color: #fff; border: none; border-radius: 8px; }
+        .panel { display: none; padding: 20px; background: #1a1a2e; border-radius: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Test de Paneles</h1>
+    <button onclick="mostrarPanel('juegos')">Juegos</button>
+    <button onclick="mostrarPanel('accesorios')">Accesorios</button>
+    <button onclick="mostrarPanel('admin')">Admin</button>
+    
+    <div id="panelJuegos" class="panel" style="display:block;">Panel de Juegos</div>
+    <div id="panelAccesorios" class="panel">Panel de Accesorios</div>
+    <div id="panelAdmin" class="panel">Panel de Admin</div>
+
+    <script>
+        function mostrarPanel(nombre) {
+            document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+            const panel = document.getElementById('panel' + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+            if (panel) {
+                panel.style.display = 'block';
+                console.log('Mostrando:', nombre);
+            }
+        }
+    </script>
+</body>
+</html>

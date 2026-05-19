@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Banco</title>
+    <link rel="stylesheet" href="css/banco.css">
+    <style>
+        .movimiento-item {
+            cursor: default;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .movimiento-item.dragging {
+            opacity: 0.5;
+            background: #1a1a2e;
+            border: 1px dashed #4ecca3;
+        }
+        .movimiento-item.drag-over {
+            border-top: 3px solid #4ecca3;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        if (!localStorage.getItem('usuarioActual')) {
+            window.location.href = '/selector.html';
+        }
+    </script>
+
+    <div class="app-container">
+        <header class="topbar-banco">
+            <a href="/selector.html" class="btn-volver">← Atrás</a>
+            <h1>🏦 Mi Banco</h1>
+            <span class="usuario-tag" id="usuarioTag"></span>
+        </header>
+
+        <div class="balance-card">
+            <div class="balance-label">Saldo actual</div>
+            <div class="balance-valor" id="saldoActual">0,00 €</div>
+        </div>
+
+        <div class="tabs-banco">
+            <button class="tab-banco activo" onclick="cambiarTabBanco('resumen')">📊 Resumen</button>
+            <button class="tab-banco" onclick="cambiarTabBanco('ingresos')">💰 Ingresos</button>
+            <button class="tab-banco" onclick="cambiarTabBanco('gastos')">💸 Gastos</button>
+            <button class="tab-banco" onclick="cambiarTabBanco('prestamos')">👥 Préstamos</button>
+        </div>
+
+        <div id="panelResumen" class="panel-banco">
+            <h3>Últimos movimientos</h3>
+            <div id="listaMovimientos"></div>
+        </div>
+
+        <div id="panelIngresos" class="panel-banco" style="display:none;">
+            <h3>Registrar ingreso</h3>
+            <form id="formIngreso" onsubmit="return guardarIngreso(event)">
+                <input type="number" id="cantidadIngreso" placeholder="Cantidad (€)" step="0.01" min="0.01" required>
+                <input type="text" id="conceptoIngreso" placeholder="Concepto" required>
+                <input type="date" id="fechaIngreso" required>
+                <select id="prestamoVinculado">
+                    <option value="">Sin préstamo vinculado</option>
+                </select>
+                <button type="submit" class="btn-guardar">💾 Guardar ingreso</button>
+            </form>
+            <h3 style="margin-top:20px;">Historial de ingresos</h3>
+            <div id="listaIngresos"></div>
+        </div>
+
+        <div id="panelGastos" class="panel-banco" style="display:none;">
+            <h3>Registrar gasto</h3>
+            <form id="formGasto" onsubmit="return guardarGasto(event)">
+                <input type="number" id="cantidadGasto" placeholder="Cantidad (€)" step="0.01" min="0.01" required>
+                <input type="text" id="conceptoGasto" placeholder="Concepto" required>
+                <input type="date" id="fechaGasto" required>
+                <select id="categoriaGasto">
+                    <option value="ocio">🎮 Ocio</option>
+                    <option value="comida">🍔 Comida</option>
+                    <option value="transporte">🚗 Transporte</option>
+                    <option value="facturas">📄 Facturas</option>
+                    <option value="ropa">👕 Ropa</option>
+                    <option value="salud">💊 Salud</option>
+                    <option value="otros">📦 Otros</option>
+                </select>
+                <button type="submit" class="btn-guardar">💾 Guardar gasto</button>
+            </form>
+            <h3 style="margin-top:20px;">Historial de gastos</h3>
+            <div id="listaGastos"></div>
+        </div>
+
+        <div id="panelPrestamos" class="panel-banco" style="display:none;">
+            <h3>Nuevo préstamo</h3>
+            <form id="formPrestamo" onsubmit="return guardarPrestamo(event)">
+                <input type="text" id="nombrePrestamo" placeholder="Nombre de la persona" required>
+                <input type="number" id="cantidadPrestamo" placeholder="Cantidad total (€)" step="0.01" min="0.01" required>
+                <input type="date" id="fechaPrestamo" required>
+                <input type="text" id="conceptoPrestamo" placeholder="Concepto (opcional)">
+                <button type="submit" class="btn-guardar">💾 Guardar préstamo</button>
+            </form>
+            <h3 style="margin-top:20px;">Préstamos activos</h3>
+            <div id="listaPrestamos"></div>
+        </div>
+    </div>
+
+    <script>
+        const usuarioActual = localStorage.getItem('usuarioActual');
+        document.getElementById('usuarioTag').textContent = '👤 ' + usuarioActual;
+
+        let datosBanco = { ingresos: [], gastos: [], prestamos: [] };
+
+        document.addEventListener('dragover', function(e) { e.preventDefault(); });
+        document.addEventListener('drop', function(e) { e.preventDefault(); });
+
+        function cambiarTabBanco(tab) {
+            document.querySelectorAll('.tab-banco').forEach(t => t.classList.remove('activo'));
+            document.querySelectorAll('.panel-banco').forEach(p => p.style.display = 'none');
+            event.target.classList.add('activo');
+            document.getElementById('panel' + tab.charAt(0).toUpperCase() + tab.slice(1)).style.display = 'block';
+        }
+
+        async function cargarDatos() {
+            try {
+                const res = await fetch(`/api/banco/${usuarioActual}`);
+                if (res.ok) datosBanco = await res.json();
+            } catch(e) {}
+            actualizarTodo();
+        }
+
+        function actualizarTodo() {
+            const totalIngresos = datosBanco.ingresos.reduce((sum, i) => sum + i.cantidad, 0);
+            const totalGastos = datosBanco.gastos.reduce((sum, g) => sum + g.cantidad, 0);
+            document.getElementById('saldoActual').textContent = (totalIngresos - totalGastos).toFixed(2) + ' €';
+
+            const movs = [
+                ...datosBanco.ingresos.map(i => {
+                    const prestamo = i.prestamoId ? datosBanco.prestamos.find(p => p.id === i.prestamoId) : null;
+                    return {
+                        ...i, tipo: i.prestamoId ? 'devolucion' : 'ingreso',
+                        texto: i.prestamoId && prestamo ? '🔙 Devuelve ' + prestamo.nombre + ': ' + i.concepto : '💰 ' + i.concepto,
+                        color: '#4ecca3', signo: '+'
+                    };
+                }),
+                ...datosBanco.gastos.map(g => {
+                    const esPrestamo = g.categoria === 'prestamo';
+                    return {
+                        ...g, tipo: esPrestamo ? 'prestamo_gasto' : 'gasto',
+                        texto: esPrestamo ? '👤 ' + g.concepto : '💸 ' + g.concepto,
+                        color: esPrestamo ? '#f0a500' : '#e94560', signo: '-'
+                    };
+                })
+            ]; // sin sort, respeta el orden manual
+
+            document.getElementById('listaMovimientos').innerHTML = movs.length === 0
+                ? '<p style="color:#888;">No hay movimientos</p>'
+                : movs.map(m => `
+                    <div class="movimiento-item" draggable="true" 
+                         data-id="${m.id}" data-tipo="${m.tipo}" data-fecha="${m.fecha}"
+                         ondragstart="dragStart(event)" 
+                         ondragover="dragOver(event)" 
+                         ondragleave="dragLeave(event)"
+                         ondrop="drop(event)"
+                         ondragend="dragEnd(event)"
+                         onclick="toggleMenuMovimiento(event, ${m.id}, '${m.tipo}')"
+                         style="position:relative;">
+                        <span style="display:flex;align-items:center;gap:8px;">
+                            <span style="cursor:grab;font-size:14px;" title="Arrastrar">⠿</span>
+                            <span>${m.texto}</span>
+                        </span>
+                        <span style="color:${m.color}">${m.signo} ${m.cantidad.toFixed(2)} €</span>
+                        <span style="color:#888;font-size:11px;">${new Date(m.fecha).toLocaleDateString('es-ES')}</span>
+                    </div>
+                `).join('');
+
+            document.getElementById('listaIngresos').innerHTML = datosBanco.ingresos.length === 0
+                ? '<p style="color:#888;">No hay ingresos</p>'
+                : datosBanco.ingresos.sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).map(i => `
+                    <div class="movimiento-item">
+                        <span>💰 ${i.concepto}</span>
+                        <span style="color:#4ecca3">+${i.cantidad.toFixed(2)} €</span>
+                        <span style="color:#888;font-size:11px;">${new Date(i.fecha).toLocaleDateString('es-ES')}</span>
+                        ${i.prestamoId ? '<span style="color:#f0a500;font-size:10px;">🔗 Préstamo</span>' : ''}
+                    </div>
+                `).join('');
+
+            document.getElementById('listaGastos').innerHTML = datosBanco.gastos.length === 0
+                ? '<p style="color:#888;">No hay gastos</p>'
+                : datosBanco.gastos.sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).map(g => {
+                    const esPrestamo = g.categoria === 'prestamo';
+                    return `
+                        <div class="movimiento-item">
+                            <span>${esPrestamo ? '👤' : '💸'} ${g.concepto}</span>
+                            <span style="color:${esPrestamo ? '#f0a500' : '#e94560'}">-${g.cantidad.toFixed(2)} €</span>
+                            <span style="color:#888;font-size:11px;">${new Date(g.fecha).toLocaleDateString('es-ES')}</span>
+                            <span style="background:#2a2a3e;padding:2px 8px;border-radius:10px;font-size:10px;">${g.categoria}</span>
+                        </div>
+                    `;
+                }).join('');
+
+            const prestamosAgrupados = {};
+            datosBanco.prestamos.forEach(p => {
+                const k = p.nombre.toLowerCase();
+                if (!prestamosAgrupados[k]) prestamosAgrupados[k] = { nombre: p.nombre, cantidad: 0, ids: [] };
+                prestamosAgrupados[k].cantidad += p.cantidad;
+                prestamosAgrupados[k].ids.push(p.id);
+            });
+
+            document.getElementById('listaPrestamos').innerHTML = Object.values(prestamosAgrupados).length === 0
+                ? '<p style="color:#888;">No hay préstamos</p>'
+                : Object.values(prestamosAgrupados).map(grupo => {
+                    const pagado = datosBanco.ingresos.filter(i => grupo.ids.includes(i.prestamoId)).reduce((sum, i) => sum + i.cantidad, 0);
+                    const resto = grupo.cantidad - pagado;
+                    return `
+                        <div class="movimiento-item" style="border-left:3px solid ${resto <= 0 ? '#4ecca3' : '#f0a500'};padding-left:12px;">
+                            <div><strong>${grupo.nombre}</strong></div>
+                            <div><span style="color:#f0a500;">${resto.toFixed(2)} € pendiente</span> <span style="color:#888;font-size:10px;">de ${grupo.cantidad.toFixed(2)} €</span></div>
+                        </div>`;
+                }).join('');
+
+            const select = document.getElementById('prestamoVinculado');
+            const pSelect = {};
+            datosBanco.prestamos.forEach(p => {
+                const k = p.nombre.toLowerCase();
+                if (!pSelect[k]) pSelect[k] = { nombre: p.nombre, ids: [], cantidad: 0 };
+                pSelect[k].ids.push(p.id);
+                pSelect[k].cantidad += p.cantidad;
+            });
+            select.innerHTML = '<option value="">Sin préstamo vinculado</option>' +
+                Object.values(pSelect).filter(g => {
+                    const pagado = datosBanco.ingresos.filter(i => g.ids.includes(i.prestamoId)).reduce((s, i) => s + i.cantidad, 0);
+                    return pagado < g.cantidad;
+                }).map(g => {
+                    const pagado = datosBanco.ingresos.filter(i => g.ids.includes(i.prestamoId)).reduce((s, i) => s + i.cantidad, 0);
+                    return `<option value="${g.ids[0]}">${g.nombre} (${(g.cantidad - pagado).toFixed(2)} € pend.)</option>`;
+                }).join('');
+        }
+
+async function guardarDatos(sinRecargar = false) {
+    await fetch('/api/banco', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: usuarioActual, datos: datosBanco })
+    });
+    if (!sinRecargar) actualizarTodo();
+}
+
+        async function guardarIngreso(e) {
+            e.preventDefault();
+            const prestamoId = document.getElementById('prestamoVinculado').value || null;
+            datosBanco.ingresos.unshift({
+                id: Date.now(),
+                cantidad: parseFloat(document.getElementById('cantidadIngreso').value),
+                concepto: document.getElementById('conceptoIngreso').value,
+                fecha: document.getElementById('fechaIngreso').value,
+                prestamoId: prestamoId ? parseInt(prestamoId) : null
+            });
+            await guardarDatos();
+            e.target.reset();
+        }
+
+        async function guardarGasto(e) {
+            e.preventDefault();
+            datosBanco.gastos.unshift({
+                id: Date.now(),
+                cantidad: parseFloat(document.getElementById('cantidadGasto').value),
+                concepto: document.getElementById('conceptoGasto').value,
+                fecha: document.getElementById('fechaGasto').value,
+                categoria: document.getElementById('categoriaGasto').value
+            });
+            await guardarDatos();
+            e.target.reset();
+        }
+
+        async function guardarPrestamo(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombrePrestamo').value.trim();
+            const cantidad = parseFloat(document.getElementById('cantidadPrestamo').value);
+            const fecha = document.getElementById('fechaPrestamo').value;
+            const concepto = document.getElementById('conceptoPrestamo').value || '';
+            const pid = Date.now();
+            datosBanco.prestamos.unshift({ id: pid, nombre, cantidad, fecha, concepto });
+            datosBanco.gastos.unshift({
+                id: Date.now() + 1, cantidad, fecha, categoria: 'prestamo',
+                concepto: 'Préstamo a ' + nombre + (concepto ? ': ' + concepto : ''), prestamoId: pid
+            });
+            await guardarDatos();
+            e.target.reset();
+        }
+
+        function editarMovimiento(id, tipo) {
+            let item;
+            if (tipo === 'ingreso' || tipo === 'devolucion') item = datosBanco.ingresos.find(i => i.id === id);
+            else if (tipo === 'gasto' || tipo === 'prestamo_gasto') item = datosBanco.gastos.find(g => g.id === id);
+            else item = datosBanco.prestamos.find(p => p.id === id);
+            if (!item) return;
+            const c = prompt('Concepto:', item.concepto || item.nombre || '');
+            if (c === null) return;
+            const v = parseFloat(prompt('Cantidad (€):', item.cantidad));
+            if (isNaN(v)) return;
+            const f = prompt('Fecha (YYYY-MM-DD):', item.fecha);
+            if (!f) return;
+            item.concepto = c;
+            if (item.nombre !== undefined) item.nombre = c;
+            item.cantidad = v;
+            item.fecha = f;
+            if (item.categoria !== undefined) {
+                const cat = prompt('Categoría:', item.categoria);
+                if (cat) item.categoria = cat;
+            }
+            if (item.prestamoId) {
+                const p = datosBanco.prestamos.find(pr => pr.id === item.prestamoId);
+                if (p) { p.cantidad = v; p.fecha = f; p.concepto = c.replace('Préstamo a ' + p.nombre + ': ', '').replace('Préstamo a ' + p.nombre, ''); }
+            }
+            guardarDatos();
+        }
+
+        function eliminarMovimiento(id, tipo) {
+            if (!confirm('¿Eliminar?')) return;
+            if (tipo === 'ingreso' || tipo === 'devolucion') datosBanco.ingresos = datosBanco.ingresos.filter(i => i.id !== id);
+            else if (tipo === 'gasto' || tipo === 'prestamo_gasto') {
+                const g = datosBanco.gastos.find(x => x.id === id);
+                if (g && g.prestamoId) datosBanco.prestamos = datosBanco.prestamos.filter(p => p.id !== g.prestamoId);
+                datosBanco.gastos = datosBanco.gastos.filter(x => x.id !== id);
+            } else {
+                datosBanco.prestamos = datosBanco.prestamos.filter(p => p.id !== id);
+                datosBanco.gastos = datosBanco.gastos.filter(g => g.prestamoId !== id);
+            }
+            guardarDatos();
+        }
+
+        // ===== DRAG & DROP =====
+        let draggedItem = null;
+
+        function dragStart(e) {
+            draggedItem = e.target.closest('.movimiento-item');
+            if (!draggedItem) return;
+            draggedItem.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', '');
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            const item = e.target.closest('.movimiento-item');
+            if (!item || item === draggedItem) return;
+            document.querySelectorAll('.movimiento-item').forEach(el => el.classList.remove('drag-over'));
+            item.classList.add('drag-over');
+        }
+
+        function dragLeave(e) {
+            const item = e.target.closest('.movimiento-item');
+            if (item) item.classList.remove('drag-over');
+        }
+
+function drop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const target = e.target.closest('.movimiento-item');
+    if (!target || !draggedItem || target === draggedItem) return;
+
+    const fechaDragged = draggedItem.dataset.fecha;
+    const fechaTarget = target.dataset.fecha;
+    
+    if (fechaDragged !== fechaTarget) return;
+
+    const tipo = draggedItem.dataset.tipo;
+    const id = parseInt(draggedItem.dataset.id);
+    const targetTipo = target.dataset.tipo;
+
+    const esPositivo = (t) => t === 'ingreso' || t === 'devolucion';
+    const getArray = (t) => esPositivo(t) ? datosBanco.ingresos : datosBanco.gastos;
+
+    const arrayFrom = getArray(tipo);
+    const fromIndex = arrayFrom.findIndex(i => i.id === id);
+    if (fromIndex === -1) return;
+
+    const [moved] = arrayFrom.splice(fromIndex, 1);
+
+    if (esPositivo(tipo) === esPositivo(targetTipo)) {
+        const arrayTo = getArray(targetTipo);
+        const targetId = parseInt(target.dataset.id);
+        const toIndex = arrayTo.findIndex(i => i.id === targetId);
+        arrayTo.splice(toIndex, 0, moved);
+    } else {
+        arrayFrom.splice(0, 0, moved);
+    }
+
+    // Guardar sin recargar
+    fetch('/api/banco', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario: usuarioActual, datos: datosBanco })
+    });
+
+    // Reordenar visualmente: mover el elemento arrastrado justo antes del target
+    const lista = document.getElementById('listaMovimientos');
+    const targetIndex = Array.from(lista.children).indexOf(target);
+    const draggedIndex = Array.from(lista.children).indexOf(draggedItem);
+    
+    if (draggedIndex < targetIndex) {
+        lista.insertBefore(draggedItem, target.nextSibling);
+    } else {
+        lista.insertBefore(draggedItem, target);
+    }
+
+    document.querySelectorAll('.movimiento-item').forEach(el => el.classList.remove('drag-over'));
+}
+        function dragEnd(e) {
+            if (draggedItem) draggedItem.classList.remove('dragging');
+            draggedItem = null;
+            document.querySelectorAll('.movimiento-item').forEach(el => el.classList.remove('drag-over'));
+        }
+
+        // ===== MENÚ CONTEXTUAL =====
+        let menuMovimientoAbierto = null;
+
+        function toggleMenuMovimiento(e, id, tipo) {
+            e.stopPropagation();
+            if (menuMovimientoAbierto) { menuMovimientoAbierto.remove(); menuMovimientoAbierto = null; }
+            const item = e.currentTarget;
+            const menu = document.createElement('div');
+            menu.style.cssText = 'position:absolute;right:8px;top:8px;background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:4px;z-index:100;display:flex;gap:4px;box-shadow:0 4px 12px rgba(0,0,0,0.5);';
+            const btnE = document.createElement('button');
+            btnE.textContent = '✏️'; btnE.title = 'Editar';
+            btnE.style.cssText = 'background:rgba(255,255,255,0.05);border:none;color:#ccc;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:14px;';
+            btnE.onclick = function(ev) { ev.stopPropagation(); menu.remove(); menuMovimientoAbierto = null; editarMovimiento(id, tipo); };
+            const btnD = document.createElement('button');
+            btnD.textContent = '🗑️'; btnD.title = 'Eliminar';
+            btnD.style.cssText = 'background:rgba(233,69,96,0.1);border:none;color:#e94560;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:14px;';
+            btnD.onclick = function(ev) { ev.stopPropagation(); menu.remove(); menuMovimientoAbierto = null; eliminarMovimiento(id, tipo); };
+            menu.appendChild(btnE); menu.appendChild(btnD);
+            item.appendChild(menu);
+            menuMovimientoAbierto = menu;
+        }
+
+        document.addEventListener('click', function() {
+            if (menuMovimientoAbierto) { menuMovimientoAbierto.remove(); menuMovimientoAbierto = null; }
+        });
+
+        cargarDatos();
+    </script>
+</body>
+</html>

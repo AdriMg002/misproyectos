@@ -1,0 +1,67 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0f0f1a;
+    color: #e8e8e8;
+    min-height: 100vh;
+}
+.app-container { max-width: 700px; margin: 0 auto; padding: 20px; }
+.topbar-banco {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    background: #1a1a2e; padding: 16px 20px; border-radius: 12px;
+}
+.topbar-banco h1 { font-size: 20px; flex: 1; }
+.btn-volver {
+    color: #888; text-decoration: none; font-size: 13px;
+    padding: 8px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;
+}
+.btn-volver:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.usuario-tag { color: #888; font-size: 13px; }
+.balance-card {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 20px;
+    border: 1px solid #2a2a3e;
+}
+.balance-label { font-size: 13px; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+.balance-valor { font-size: 42px; font-weight: 700; color: #4ecca3; margin-top: 8px; }
+.tabs-banco { display: flex; gap: 4px; margin-bottom: 20px; }
+.tab-banco {
+    flex: 1; padding: 12px; background: #1a1a2e; border: 1px solid #2a2a3e;
+    color: #888; cursor: pointer; border-radius: 10px; font-size: 13px; font-weight: 600;
+}
+.tab-banco.activo { background: #e94560; color: #fff; border-color: #e94560; }
+.panel-banco {
+    background: #1a1a2e; border-radius: 12px; padding: 20px;
+    border: 1px solid #2a2a3e;
+}
+.panel-banco h3 { color: #f0a500; font-size: 15px; margin-bottom: 14px; }
+form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+form input, form select {
+    padding: 12px; background: #0f0f1a; border: 1px solid #2a2a3e;
+    border-radius: 8px; color: #e8e8e8; font-size: 14px; outline: none;
+}
+form input:focus, form select:focus { border-color: #e94560; }
+.btn-guardar {
+    padding: 14px; background: #4ecca3; color: #0f0f1a; border: none;
+    border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.movimiento-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid #2a2a3e; flex-wrap: wrap; gap: 6px;
+}
+
+.movimiento-item {
+    cursor: grab;
+    transition: all 0.2s;
+}
+.movimiento-item:active {
+    cursor: grabbing;
+}
+.movimiento-item.dragging {
+    opacity: 0.5;
+    background: #1a1a2e;
+    border: 1px dashed #4ecca3;
+}
+.movimiento-item.drag-over {
+    border-top: 2px solid #4ecca3;
+}
